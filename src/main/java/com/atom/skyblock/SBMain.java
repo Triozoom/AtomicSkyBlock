@@ -2,10 +2,7 @@ package com.atom.skyblock;
 
 import com.atom.skyblock.cmd.cmd;
 import com.atom.skyblock.configuration.SBConfig;
-import com.atom.skyblock.events.MiningEvent;
-import com.atom.skyblock.events.CombatEvent;
-import com.atom.skyblock.events.ChattingEvent;
-import com.atom.skyblock.events.OnUpdatePhase;
+import com.atom.skyblock.events.*;
 import com.atom.skyblock.ultilidadesfodas.Database;
 import com.atom.skyblock.events.pu.InteractingEvent;
 import dev.joel.bukkitutil.BukkitUtil;
@@ -61,11 +58,12 @@ public final class SBMain extends JavaPlugin
 
         BukkitUtil.INSTANCE.getConfigUtil().registerConfigurationSetting(SBConfig.class);
 
-        this.getServer().getPluginManager().registerEvents(new MiningEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new CombatEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new ChattingEvent(), this);
-        this.getServer().getPluginManager().registerEvents(new OnUpdatePhase(), this);
-        this.getServer().getPluginManager().registerEvents(new InteractingEvent(), this);
+        BukkitUtil.INSTANCE.register(new MiningEvent());
+        BukkitUtil.INSTANCE.register(new CombatEvent());
+        BukkitUtil.INSTANCE.register(new ChattingEvent());
+        BukkitUtil.INSTANCE.register(new OnUpdatePhase());
+        BukkitUtil.INSTANCE.register(new InteractingEvent());
+        BukkitUtil.INSTANCE.register(new JoinEvent());
         new BukkitRunnable() {
             public void run() {
                 Database.updateBlocks(SBMain.totalGlobalCobblestoneBroken);

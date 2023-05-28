@@ -18,6 +18,7 @@ implements Listener {
             " §8- §fPhase 6 has been added;\n" +
             " §8- §fAdded new mobs;\n" +
             " §8- §fFixed first few phases not giving seeds and making it impossible to grow a farm;\n" +
+            " §8- §fAdded friendly-fire configuration;\n" +
             " §8- §fRemoved JoelSkyBlock\n";
 
     @EventHandler
