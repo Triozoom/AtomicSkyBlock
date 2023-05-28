@@ -108,33 +108,7 @@ public class MiningEvent implements Listener
             }
 
             if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase2) {
-                for (final ItemStack in : ev.getBlock().getDrops()) {
-                    ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int i = MathAndRNG.generateInteger(40);
-                    if (i == 24) {
-                        ev.getBlock().setType(Material.CHEST);
-                        this.hasChangedLastTime = true;
-                        this.setChests.lootChestP1(ev.getBlock(), MathAndRNG.generateInteger(3));
-                        return;
-                    }
-                }
-                final int I = MathAndRNG.generateInteger(30);
-                if (I == 1) {
-                    ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p1Entities[MathAndRNG.generateInteger(this.p1Entities.length - 1)]);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int j = MathAndRNG.generateInteger(3);
-                    if (j == 1) {
-                        this.hasChangedLastTime = true;
-                        ev.getBlock().setType(this.p1Blocks[MathAndRNG.generateInteger(this.p1Blocks.length - 1)]);
-                    }
-                }
-                else {
-                    ev.getBlock().setType(Material.COBBLESTONE);
-                    this.hasChangedLastTime = false;
-                }
+                runPhase1(ev);
             }
             else if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase3) {
                 if (SBMain.phase == 1) {
@@ -145,33 +119,7 @@ public class MiningEvent implements Listener
                     this.setChests.lootChestP2(ev.getBlock(), MathAndRNG.generateInteger(3));
                     return;
                 }
-                for (final ItemStack in : ev.getBlock().getDrops()) {
-                    ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int i = MathAndRNG.generateInteger(40);
-                    if (i == 24) {
-                        ev.getBlock().setType(Material.CHEST);
-                        this.hasChangedLastTime = true;
-                        this.setChests.lootChestP2(ev.getBlock(), MathAndRNG.generateInteger(3));
-                        return;
-                    }
-                }
-                final int I = MathAndRNG.generateInteger(25);
-                if (I == 1) {
-                    ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p2Entities[MathAndRNG.generateInteger(this.p2Entities.length - 1)]);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int j = MathAndRNG.generateInteger(3);
-                    if (j == 1) {
-                        this.hasChangedLastTime = true;
-                        ev.getBlock().setType(this.p2Blocks[MathAndRNG.generateInteger(this.p2Blocks.length - 1)]);
-                    }
-                }
-                else {
-                    ev.getBlock().setType(Material.COBBLESTONE);
-                    this.hasChangedLastTime = false;
-                }
+                runPhase2(ev);
             }
             else if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase4) {
                 if (SBMain.phase == 2) {
@@ -182,33 +130,7 @@ public class MiningEvent implements Listener
                     this.setChests.lootChestP3(ev.getBlock(), MathAndRNG.generateInteger(3));
                     return;
                 }
-                for (final ItemStack in : ev.getBlock().getDrops()) {
-                    ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int i = MathAndRNG.generateInteger(40);
-                    if (i == 24) {
-                        ev.getBlock().setType(Material.CHEST);
-                        this.hasChangedLastTime = true;
-                        this.setChests.lootChestP3(ev.getBlock(), MathAndRNG.generateInteger(3));
-                        return;
-                    }
-                }
-                final int I = MathAndRNG.generateInteger(20);
-                if (I == 1) {
-                    ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p3Entities[MathAndRNG.generateInteger(this.p3Entities.length - 1)]);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int j = MathAndRNG.generateInteger(3);
-                    if (j == 1) {
-                        this.hasChangedLastTime = true;
-                        ev.getBlock().setType(this.p3Blocks[MathAndRNG.generateInteger(this.p3Blocks.length - 1)]);
-                    }
-                }
-                else {
-                    ev.getBlock().setType(Material.COBBLESTONE);
-                    this.hasChangedLastTime = false;
-                }
+                runPhase3(ev);
             }
             else if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase5) {
                 if (SBMain.phase == 3) {
@@ -219,33 +141,7 @@ public class MiningEvent implements Listener
                     this.setChests.lootChestP4(ev.getBlock(), MathAndRNG.generateInteger(3));
                     return;
                 }
-                for (final ItemStack in : ev.getBlock().getDrops()) {
-                    ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int i = MathAndRNG.generateInteger(40);
-                    if (i == 24) {
-                        ev.getBlock().setType(Material.CHEST);
-                        this.hasChangedLastTime = true;
-                        this.setChests.lootChestP4(ev.getBlock(), MathAndRNG.generateInteger(3));
-                        return;
-                    }
-                }
-                final int I = MathAndRNG.generateInteger(15);
-                if (I == 1) {
-                    ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p4Entities[MathAndRNG.generateInteger(this.p4Entities.length - 1)]);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int j = MathAndRNG.generateInteger(3);
-                    if (j == 1) {
-                        this.hasChangedLastTime = true;
-                        ev.getBlock().setType(this.p4Blocks[MathAndRNG.generateInteger(this.p4Blocks.length - 1)]);
-                    }
-                }
-                else {
-                    ev.getBlock().setType(Material.COBBLESTONE);
-                    this.hasChangedLastTime = false;
-                }
+                runPhase4(ev);
             }
             else if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase6) {
                 if (SBMain.phase == 4) {
@@ -256,43 +152,202 @@ public class MiningEvent implements Listener
                     this.setChests.lootChestP5(ev.getBlock(), MathAndRNG.generateInteger(3));
                     return;
                 }
-                for (final ItemStack in : ev.getBlock().getDrops()) {
-                    ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int i = MathAndRNG.generateInteger(40);
-                    if (i == 24) {
-                        ev.getBlock().setType(Material.CHEST);
-                        this.hasChangedLastTime = true;
-                        this.setChests.lootChestP5(ev.getBlock(), MathAndRNG.generateInteger(3));
-                        return;
-                    }
-                }
-                final int I = MathAndRNG.generateInteger(35);
-                if (I == 1) {
-                    ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p5Entities[MathAndRNG.generateInteger(this.p5Entities.length - 1)]);
-                }
-                if (!this.hasChangedLastTime) {
-                    final int j = MathAndRNG.generateInteger(3);
-                    if (j == 1) {
-                        this.hasChangedLastTime = true;
-                        ev.getBlock().setType(this.p5Blocks[MathAndRNG.generateInteger(this.p5Blocks.length - 1)]);
-                    }
-                }
-                else {
-                    ev.getBlock().setType(Material.COBBLESTONE);
-                    this.hasChangedLastTime = false;
-                }
+                runPhase5(ev);
             }
             else {
+                final int phaseSelect = MathAndRNG.generateInteger(5);
                 if (SBMain.phase == 5) {
                     ++SBMain.phase;
                     Bukkit.getPluginManager().callEvent(new PhaseUpdateEvent(SBMain.phase, SBMain.totalGlobalCobblestoneBroken));
                     ev.getBlock().setType(Material.CHEST);
                     this.hasChangedLastTime = true;
+                    switch (phaseSelect) {
+                        case 1:
+                            this.setChests.lootChestP1(ev.getBlock(), MathAndRNG.generateInteger(3));
+                            break;
+                        case 2:
+                            this.setChests.lootChestP2(ev.getBlock(), MathAndRNG.generateInteger(3));
+                            break;
+                        case 3:
+                            this.setChests.lootChestP3(ev.getBlock(), MathAndRNG.generateInteger(3));
+                            break;
+                        case 4:
+                            this.setChests.lootChestP4(ev.getBlock(), MathAndRNG.generateInteger(3));
+                            break;
+                        case 5:
+                            this.setChests.lootChestP5(ev.getBlock(), MathAndRNG.generateInteger(3));
+                            break;
+                    }
+                    return;
                 }
-                this.setChests.lootChestP1(ev.getBlock(), MathAndRNG.generateInteger(3));
+                switch (phaseSelect) {
+                    case 1:
+                        runPhase1(ev);
+                        break;
+                    case 2:
+                        runPhase2(ev);
+                        break;
+                    case 3:
+                        runPhase3(ev);
+                        break;
+                    case 4:
+                        runPhase4(ev);
+                        break;
+                    case 5:
+                        runPhase5(ev);
+                        break;
+                }
             }
+        }
+    }
+
+    private void runPhase1(final BlockBreakEvent ev) {
+        for (final ItemStack in : ev.getBlock().getDrops()) {
+            ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
+        }
+        if (!this.hasChangedLastTime) {
+            final int i = MathAndRNG.generateInteger(40);
+            if (i == 24) {
+                ev.getBlock().setType(Material.CHEST);
+                this.hasChangedLastTime = true;
+                this.setChests.lootChestP1(ev.getBlock(), MathAndRNG.generateInteger(3));
+                return;
+            }
+        }
+        final int I = MathAndRNG.generateInteger(30);
+        if (I == 1) {
+            ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p1Entities[MathAndRNG.generateInteger(this.p1Entities.length - 1)]);
+        }
+        if (!this.hasChangedLastTime) {
+            final int j = MathAndRNG.generateInteger(3);
+            if (j == 1) {
+                this.hasChangedLastTime = true;
+                ev.getBlock().setType(this.p1Blocks[MathAndRNG.generateInteger(this.p1Blocks.length - 1)]);
+            }
+        }
+        else {
+            ev.getBlock().setType(Material.COBBLESTONE);
+            this.hasChangedLastTime = false;
+        }
+    }
+
+    private void runPhase2(final BlockBreakEvent ev) {
+        for (final ItemStack in : ev.getBlock().getDrops()) {
+            ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
+        }
+        if (!this.hasChangedLastTime) {
+            final int i = MathAndRNG.generateInteger(40);
+            if (i == 24) {
+                ev.getBlock().setType(Material.CHEST);
+                this.hasChangedLastTime = true;
+                this.setChests.lootChestP2(ev.getBlock(), MathAndRNG.generateInteger(3));
+                return;
+            }
+        }
+        final int I = MathAndRNG.generateInteger(25);
+        if (I == 1) {
+            ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p2Entities[MathAndRNG.generateInteger(this.p2Entities.length - 1)]);
+        }
+        if (!this.hasChangedLastTime) {
+            final int j = MathAndRNG.generateInteger(3);
+            if (j == 1) {
+                this.hasChangedLastTime = true;
+                ev.getBlock().setType(this.p2Blocks[MathAndRNG.generateInteger(this.p2Blocks.length - 1)]);
+            }
+        }
+        else {
+            ev.getBlock().setType(Material.COBBLESTONE);
+            this.hasChangedLastTime = false;
+        }
+    }
+
+    private void runPhase3(final BlockBreakEvent ev) {
+        for (final ItemStack in : ev.getBlock().getDrops()) {
+            ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
+        }
+        if (!this.hasChangedLastTime) {
+            final int i = MathAndRNG.generateInteger(40);
+            if (i == 24) {
+                ev.getBlock().setType(Material.CHEST);
+                this.hasChangedLastTime = true;
+                this.setChests.lootChestP3(ev.getBlock(), MathAndRNG.generateInteger(3));
+                return;
+            }
+        }
+        final int I = MathAndRNG.generateInteger(20);
+        if (I == 1) {
+            ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p3Entities[MathAndRNG.generateInteger(this.p3Entities.length - 1)]);
+        }
+        if (!this.hasChangedLastTime) {
+            final int j = MathAndRNG.generateInteger(3);
+            if (j == 1) {
+                this.hasChangedLastTime = true;
+                ev.getBlock().setType(this.p3Blocks[MathAndRNG.generateInteger(this.p3Blocks.length - 1)]);
+            }
+        }
+        else {
+            ev.getBlock().setType(Material.COBBLESTONE);
+            this.hasChangedLastTime = false;
+        }
+    }
+
+    private void runPhase4(final BlockBreakEvent ev) {
+        for (final ItemStack in : ev.getBlock().getDrops()) {
+            ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
+        }
+        if (!this.hasChangedLastTime) {
+            final int i = MathAndRNG.generateInteger(40);
+            if (i == 24) {
+                ev.getBlock().setType(Material.CHEST);
+                this.hasChangedLastTime = true;
+                this.setChests.lootChestP4(ev.getBlock(), MathAndRNG.generateInteger(3));
+                return;
+            }
+        }
+        final int I = MathAndRNG.generateInteger(15);
+        if (I == 1) {
+            ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p4Entities[MathAndRNG.generateInteger(this.p4Entities.length - 1)]);
+        }
+        if (!this.hasChangedLastTime) {
+            final int j = MathAndRNG.generateInteger(3);
+            if (j == 1) {
+                this.hasChangedLastTime = true;
+                ev.getBlock().setType(this.p4Blocks[MathAndRNG.generateInteger(this.p4Blocks.length - 1)]);
+            }
+        }
+        else {
+            ev.getBlock().setType(Material.COBBLESTONE);
+            this.hasChangedLastTime = false;
+        }
+    }
+
+    private void runPhase5(final BlockBreakEvent ev) {
+        for (final ItemStack in : ev.getBlock().getDrops()) {
+            ev.getBlock().getWorld().dropItemNaturally(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), in);
+        }
+        if (!this.hasChangedLastTime) {
+            final int i = MathAndRNG.generateInteger(40);
+            if (i == 24) {
+                ev.getBlock().setType(Material.CHEST);
+                this.hasChangedLastTime = true;
+                this.setChests.lootChestP5(ev.getBlock(), MathAndRNG.generateInteger(3));
+                return;
+            }
+        }
+        final int I = MathAndRNG.generateInteger(35);
+        if (I == 1) {
+            ev.getBlock().getWorld().spawnEntity(ev.getBlock().getLocation().add(0.0, 1.0, 0.0), this.p5Entities[MathAndRNG.generateInteger(this.p5Entities.length - 1)]);
+        }
+        if (!this.hasChangedLastTime) {
+            final int j = MathAndRNG.generateInteger(3);
+            if (j == 1) {
+                this.hasChangedLastTime = true;
+                ev.getBlock().setType(this.p5Blocks[MathAndRNG.generateInteger(this.p5Blocks.length - 1)]);
+            }
+        }
+        else {
+            ev.getBlock().setType(Material.COBBLESTONE);
+            this.hasChangedLastTime = false;
         }
     }
     

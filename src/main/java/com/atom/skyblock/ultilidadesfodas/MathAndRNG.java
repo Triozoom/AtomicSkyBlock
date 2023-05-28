@@ -4,8 +4,9 @@ import java.util.*;
 
 public class MathAndRNG
 {
+    private static final Random b = new Random(); // literally just optimized a lot
+
     public static int generateInteger(final int max) {
-        final Random b = new Random();
         return b.nextInt(max) + 1;
     }
 
