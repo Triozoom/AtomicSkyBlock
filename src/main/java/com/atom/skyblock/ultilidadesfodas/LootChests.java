@@ -14,6 +14,8 @@ public class LootChests
                 final Inventory inv = chest.getBlockInventory();
                 final ItemStack apple = new ItemStack(Material.APPLE, MathAndRNG.generateInteger(4));
                 final ItemStack sapling = new ItemStack(Material.OAK_SAPLING, MathAndRNG.generateInteger(7));
+                final ItemStack whaseeds = new ItemStack(Material.MELON_SEEDS, MathAndRNG.generateInteger(14));
+                final ItemStack pumpseeds = new ItemStack(Material.PUMPKIN_SEEDS, MathAndRNG.generateInteger(12));
                 final ItemStack dirt = new ItemStack(Material.DIRT, MathAndRNG.generateInteger(3));
                 final ItemStack bucket = new ItemStack(Material.BUCKET, MathAndRNG.generateInteger(2));
                 final ItemStack cobblestone = new ItemStack(Material.COBBLESTONE, MathAndRNG.generateInteger(34));
@@ -32,13 +34,14 @@ public class LootChests
                 final Chest chest2 = (Chest)setBlock.getState();
                 final Inventory inv2 = chest2.getBlockInventory();
                 final ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, MathAndRNG.generateInteger(4));
+                final ItemStack seeds = new ItemStack(Material.WHEAT_SEEDS, MathAndRNG.generateInteger(10));
                 final ItemStack carrot = new ItemStack(Material.CARROT, MathAndRNG.generateInteger(24));
-                final ItemStack grassbl = new ItemStack(Material.GRASS_BLOCK, MathAndRNG.generateInteger(2));
+                final ItemStack grassbl = new ItemStack(Material.GRASS_BLOCK, MathAndRNG.generateInteger(4));
                 final ItemStack stonecutter = new ItemStack(Material.STONECUTTER, MathAndRNG.generateInteger(2));
                 final ItemStack cowspawnegg = new ItemStack(Material.COW_SPAWN_EGG, MathAndRNG.generateInteger(4));
                 final ItemStack potato = new ItemStack(Material.POTATO, MathAndRNG.generateInteger(24));
                 final ItemStack[] array2;
-                final ItemStack[] all2 = array2 = new ItemStack[] { gapple, carrot, grassbl, stonecutter, cowspawnegg, potato };
+                final ItemStack[] all2 = array2 = new ItemStack[] { gapple, carrot, seeds, grassbl, stonecutter, cowspawnegg, potato };
                 for (final ItemStack is2 : array2) {
                     final int j = MathAndRNG.generateInteger(26);
                     if (inv2.getItem(j) == null) {
@@ -55,6 +58,7 @@ public class LootChests
                 final ItemStack cerca = new ItemStack(Material.OAK_FENCE, MathAndRNG.generateInteger(6));
                 final ItemStack cerca2 = new ItemStack(Material.OAK_FENCE_GATE, MathAndRNG.generateInteger(3));
                 final ItemStack cookie = new ItemStack(Material.COOKIE, MathAndRNG.generateInteger(34));
+                final ItemStack waterbucket = new ItemStack(Material.WATER_BUCKET, MathAndRNG.generateInteger(2));
                 final ItemStack parrotegg = new ItemStack(Material.PARROT_SPAWN_EGG, MathAndRNG.generateInteger(2));
                 final ItemStack[] array3;
                 final ItemStack[] all3 = array3 = new ItemStack[] { villageregg, wood, cerca, cerca2, cookie, parrotegg };
@@ -77,9 +81,10 @@ public class LootChests
             case 1: {
                 final Chest chest = (Chest)setBlock.getState();
                 final Inventory inv = chest.getBlockInventory();
-                final ItemStack haybale = new ItemStack(Material.APPLE, MathAndRNG.generateInteger(12));
+                final ItemStack haybale = new ItemStack(Material.HAY_BLOCK, MathAndRNG.generateInteger(6));
+                final ItemStack haybale2 = new ItemStack(Material.APPLE, MathAndRNG.generateInteger(12));
                 final ItemStack igspawn = new ItemStack(Material.OAK_SAPLING, MathAndRNG.generateInteger(2));
-                final ItemStack doggy = new ItemStack(Material.DIRT, MathAndRNG.generateInteger(3));
+                final ItemStack doggy = new ItemStack(Material.DIRT, MathAndRNG.generateInteger(12));
                 final ItemStack beehive = new ItemStack(Material.BUCKET, MathAndRNG.generateInteger(5));
                 final ItemStack smoker = new ItemStack(Material.APPLE, MathAndRNG.generateInteger(10));
                 final ItemStack coal = new ItemStack(Material.COAL_BLOCK, MathAndRNG.generateInteger(3));

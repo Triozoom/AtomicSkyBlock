@@ -23,7 +23,7 @@ public class HasteBoostItem implements PowerUpItemWithValue {
         final ItemMeta im = is.getItemMeta();
         if (im == null) return 0.f;
         if (im.getDisplayName() == null) return 0.f;
-        final String filtered = im.getDisplayName().replaceAll("§6§lACTIVATE ", "").replaceAll("x MINING SPEED BOOSTER", "");
+        final String filtered = im.getDisplayName().replaceAll("§6§lACTIVATE ", "").replaceAll("x MINING SPEED BOOSTER", "").replaceAll(",", ".");
         return Float.parseFloat(filtered);
     }
 

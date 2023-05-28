@@ -38,6 +38,7 @@ public class cmd implements CommandExecutor
                     }
 
                     cs.sendMessage(" §e/jsb next §8- §eInforma-te quantos blocos são necessários para alcançar a proxima Phase.");
+                    cs.sendMessage(" §e/jsb ab §8- §eInforma-te os boosters ativos.");
                     if (cs instanceof Player) {
                         cs.sendMessage(" §e/jsb voar §8- §eTe faz voar se há um boost de voar ativo.");
                         cs.sendMessage(" §e/jsb spam <msg> §8- §eSpama algo.");
@@ -47,6 +48,27 @@ public class cmd implements CommandExecutor
                             cs.sendMessage(" §c/jsb cc §8- §cLimpa o chat.");
                         }
                     }
+                    cs.sendMessage(" ");
+                }
+                else if (args[0].equalsIgnoreCase("ab")) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("\n").append(" §9§lASB §8- §fAqui estão os §6boosters §fativos:").append("\n\n");
+                    int i = 0;
+                    if (PowerupManager.hasteBoost != 1.f) {
+                        sb.append(String.format(" §8- §6%.1fx §fBooster de Mining Speed §7por §6%.1fmin", PowerupManager.hasteBoost, MathAndRNG.turnIntoMinutes(PowerupManager.hasteBoostTimeLeft))).append("\n");
+                        i++;
+                    }
+                    if (PowerupManager.flightBoostEnabled) {
+                        sb.append(String.format(" §8- §fBooster de Voar §7por §6%.1fmin", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft))).append("\n");
+                        i++;
+                    }
+                    if (PowerupManager.cobbleBoost != 1.f) {
+                        sb.append(String.format(" §8- §6%.1fx §fBooster de Cobblestone §7por §6%.1fmin", PowerupManager.cobbleBoost, MathAndRNG.turnIntoMinutes(PowerupManager.cobbleBoostTimeLeft))).append("\n");
+                        i++;
+                    }
+                    if (i==0) sb.append(" §cNenhum booster ativo.").append("\n");
+                    sb.append("\n");
+                    cs.sendMessage(sb.toString());
                 }
                 else if (args[0].equalsIgnoreCase("set")) {
                     if (!(cs instanceof Player) || !cs.hasPermission("asb.admin")) {
