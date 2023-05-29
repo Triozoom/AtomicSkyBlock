@@ -3,6 +3,7 @@ version: 0.7Dev
 main: com.atom.skyblock.SBMain
 api-version: 1.18
 depend: [TitleManager]
+softdepend: [PlaceholderAPI]
 authors: [ Joel ]
 description: SkyBlock plugin that makes skyblock rather new than old, new features, and more all to skyblock. Bring back old memories with new rewards, missions and ENEMIES with this plugin!
 commands:

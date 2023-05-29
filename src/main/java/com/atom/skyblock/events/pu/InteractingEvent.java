@@ -100,7 +100,7 @@ public class InteractingEvent implements Listener {
                             }else if (PowerupManager.flightBoostTimeLeft == 200L) {
                                 Bukkit.broadcastMessage("§9§lASB §8» §4O boost de voar tem apenas 10 segundos restantes!");
                             }
-                            PowerupManager.cobbleBoostTimeLeft -= 20L;
+                            PowerupManager.flightBoostTimeLeft -= 20L;
                         }
                     }.runTaskTimer(SBMain.getPlugin(SBMain.class), 0L, 20L);
                     Bukkit.broadcastMessage("\n§9§lASB §7» §fUm booster de voar foi ativado por 15 minutos!\n");

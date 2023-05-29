@@ -100,7 +100,7 @@ public class MiningEvent implements Listener
                 }
             }
 
-            final int flightPu = MathAndRNG.generateInteger(700);
+            final int flightPu = MathAndRNG.generateInteger(520);
             if (flightPu == 69) {
                 if (!b) ev.getPlayer().getInventory().addItem(FlightBoostItem.returnItemStack());
                 else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), FlightBoostItem.returnItemStack());

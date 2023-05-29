@@ -127,8 +127,8 @@ public class Database
             stm.execute();
             stm2.execute();
             for (final Player all : Bukkit.getOnlinePlayers()) {
-                Database.api.sendTitles(all, "§c§lSKYBLOCK", "§cA reset has been issued.");
-                Database.api.sendActionbar(all, "§eRecommended to start to mine again!");
+                Database.api.sendTitles(all, "§c§lSKYBLOCK", "§cUm reset foi feito.");
+                Database.api.sendActionbar(all, "§eSe preparem para o jogo novamente!");
             }
         }
         catch (SQLException ex) {

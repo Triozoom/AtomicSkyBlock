@@ -3,10 +3,12 @@ package com.atom.skyblock;
 import com.atom.skyblock.cmd.cmd;
 import com.atom.skyblock.configuration.SBConfig;
 import com.atom.skyblock.events.*;
+import com.atom.skyblock.papi.PAPI;
 import com.atom.skyblock.ultilidadesfodas.Database;
 import com.atom.skyblock.events.pu.InteractingEvent;
 import dev.joel.bukkitutil.BukkitUtil;
 import lombok.SneakyThrows;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.*;
@@ -71,6 +73,13 @@ public final class SBMain extends JavaPlugin
                 Bukkit.getConsoleSender().sendMessage("§9[ASB - SQLITE] §fAtualização da base de dados realizada; Blocos quebrados: " + SBMain.totalGlobalCobblestoneBroken);
             }
         }.runTaskTimer(this, 20L, 7200L);
+
+        if (BukkitUtil.INSTANCE.isAPlugin("PlaceholderAPI")) {
+            new PAPI().register();
+        }else {
+            BukkitUtil.send("§c[ASB] §cPlaceholderAPI isn't available, skipping...");
+        }
+
         new BukkitRunnable() {
             @Override
             public void run() {

@@ -97,11 +97,11 @@ public class cmd implements CommandExecutor
                         return true;
                     }
                     if (player.getAllowFlight()) {
-                        player.sendMessage(String.format("§9§lASB §8» §cBoost de voar desativado. O booster tem %.1f restantes.", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
+                        player.sendMessage(String.format("§9§lASB §8» §cBoost de voar desativado. O booster tem %.1fmin restantes.", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
                         player.setAllowFlight(false);
                     }
                     else {
-                        player.sendMessage(String.format("§9§lASB §8» §aBoost de voar ativado. O booster tem %.1f restantes.", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
+                        player.sendMessage(String.format("§9§lASB §8» §aBoost de voar ativado. O booster tem %.1fmin restantes.", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
                         player.setAllowFlight(true);
                     }
                 }
