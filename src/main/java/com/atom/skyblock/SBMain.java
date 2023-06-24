@@ -8,7 +8,6 @@ import com.atom.skyblock.ultilidadesfodas.Database;
 import com.atom.skyblock.events.pu.InteractingEvent;
 import dev.joel.bukkitutil.BukkitUtil;
 import lombok.SneakyThrows;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.*;

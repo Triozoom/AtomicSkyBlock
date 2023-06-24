@@ -52,7 +52,6 @@ public class cmd implements CommandExecutor
                 }
                 else if (args[0].equalsIgnoreCase("ab")) {
                     StringBuilder sb = new StringBuilder();
-                    sb.append("\n").append(" §9§lASB §8- §fAqui estão os §6boosters §fativos:").append("\n\n");
                     int i = 0;
                     if (PowerupManager.hasteBoost != 1.f) {
                         sb.append(String.format(" §8- §6%.1fx §fBooster de Mining Speed §7por §6%.1fmin", PowerupManager.hasteBoost, MathAndRNG.turnIntoMinutes(PowerupManager.hasteBoostTimeLeft))).append("\n");
@@ -66,7 +65,12 @@ public class cmd implements CommandExecutor
                         sb.append(String.format(" §8- §6%.1fx §fBooster de Cobblestone §7por §6%.1fmin", PowerupManager.cobbleBoost, MathAndRNG.turnIntoMinutes(PowerupManager.cobbleBoostTimeLeft))).append("\n");
                         i++;
                     }
-                    if (i==0) sb.append(" §cNenhum booster ativo.").append("\n");
+
+                    if (i==0) {
+                        cs.sendMessage("§cNão há boosters ativos.");
+                        return false;
+                    }
+                    cs.sendMessage(String.format("\n §9§lASB §8- §fAqui estão os §6%d boosters §fativos:\n\n", i));
                     sb.append("\n");
                     cs.sendMessage(sb.toString());
                 }

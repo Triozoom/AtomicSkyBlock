@@ -5,7 +5,6 @@ import com.atom.skyblock.configuration.SBConfig;
 import dev.joel.bukkitutil.BukkitUtil;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 public class PAPI extends PlaceholderExpansion {
 
