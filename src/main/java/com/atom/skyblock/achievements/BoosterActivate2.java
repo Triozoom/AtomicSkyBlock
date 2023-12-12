@@ -45,6 +45,11 @@ public class BoosterActivate2 extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.BEACON;
+    }
+
+    @Override
     public Type type() {
         return Type.ACTION;
     }

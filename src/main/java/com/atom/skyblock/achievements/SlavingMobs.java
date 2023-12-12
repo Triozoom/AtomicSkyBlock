@@ -7,6 +7,7 @@ import com.atom.skyblock.powerups.impl.BoosterItem;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -47,6 +48,11 @@ public class SlavingMobs extends Achievement {
     @Override
     public Type type() {
         return Type.ACTION;
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.ELDER_GUARDIAN_SPAWN_EGG;
     }
 
     @Override

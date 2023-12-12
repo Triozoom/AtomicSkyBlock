@@ -51,6 +51,11 @@ public class FunnyAchievementIThinkProbablyLikely extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.REDSTONE;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 25;
         this.conclude(player);

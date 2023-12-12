@@ -53,6 +53,11 @@ public class MobExt extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.DIAMOND_SWORD;
+    }
+
+    @Override
     public void onComplete(Player player) {
         final ItemStack potion = new ItemStack(Material.POTION);
         final PotionMeta pm = (PotionMeta) potion.getItemMeta();

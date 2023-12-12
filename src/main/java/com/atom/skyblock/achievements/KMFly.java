@@ -46,7 +46,7 @@ public class KMFly extends Achievement {
 
     @Override
     public Material itemDisplay() {
-        return Material.NETHER_STAR;
+        return Material.FEATHER;
     }
 
     @Override

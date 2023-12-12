@@ -43,7 +43,7 @@ public class TKMFly extends Achievement {
 
     @Override
     public Material itemDisplay() {
-        return Material.FEATHER;
+        return Material.ELYTRA;
     }
 
     @Override

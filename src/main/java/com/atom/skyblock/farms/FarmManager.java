@@ -236,7 +236,7 @@ public class FarmManager {
 
                 if (farm.spawnType.name().contains("ALL")) {
                     // rare spawns
-                    final int rng2 = MathAndRNG.generateInteger(50);
+                    final int rng2 = MathAndRNG.generateInteger(45);
                     if (rng2 == 4) {
                         rng1 = MathAndRNG.generateInteger(farm.spawnType == Farm.EntitiesType.ALL ? 3 : 4);
                         switch (rng1) {
@@ -244,10 +244,10 @@ public class FarmManager {
                                 etype = EntityType.ELDER_GUARDIAN;
                                 break;
                             case 2:
-                                etype = EntityType.SHULKER;
+                                etype = EntityType.GHAST;
                                 break;
                             case 3:
-                                etype = EntityType.VINDICATOR;
+                                etype = EntityType.GIANT;
                                 break;
                             case 4: // only the RAREST farm
                                 etype = EntityType.WITHER;

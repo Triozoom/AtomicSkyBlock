@@ -43,7 +43,7 @@ public class ActualKMFly extends Achievement {
 
     @Override
     public Material itemDisplay() {
-        return Material.ELYTRA;
+        return Material.PHANTOM_MEMBRANE;
     }
 
     @Override

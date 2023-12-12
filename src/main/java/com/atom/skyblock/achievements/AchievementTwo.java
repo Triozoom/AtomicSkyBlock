@@ -52,6 +52,11 @@ public class AchievementTwo extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.CHEST_MINECART;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, BoosterItem.returnItemStack(2.f));
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, BoosterItem.returnItemStack(2.f));

@@ -50,6 +50,11 @@ public class SpiderKiller extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.FERMENTED_SPIDER_EYE;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, BoosterItem.returnItemStack(2.F));
         this.conclude(player);

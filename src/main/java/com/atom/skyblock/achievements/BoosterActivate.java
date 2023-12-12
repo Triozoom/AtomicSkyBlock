@@ -49,6 +49,11 @@ public class BoosterActivate extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.EXPERIENCE_BOTTLE;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 120;
         this.conclude(player);

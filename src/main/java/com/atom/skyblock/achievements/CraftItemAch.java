@@ -4,6 +4,7 @@ import com.atom.skyblock.SBMain;
 import com.atom.skyblock.api.BoosterActivateEvent;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.CraftItemEvent;
@@ -49,6 +50,11 @@ public class CraftItemAch extends Achievement {
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 20;
         this.conclude(player);
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.CRAFTING_TABLE;
     }
 
     @EventHandler

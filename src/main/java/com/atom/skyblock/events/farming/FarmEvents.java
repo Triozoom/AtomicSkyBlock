@@ -257,60 +257,97 @@ public class FarmEvents implements Listener {
 
     @EventHandler
     public void onKill(final KillFarmMobEvent ev) {
-        final int random = MathAndRNG.generateInteger(318 - (importanceOf(ev.getDead()) * (importanceOf(ev.getDead()) > 3 ? 30 : 18)));
-        // ev.getPlayer().sendMessage("r: " + random);
-        if (random == 5) {
-            final int which = MathAndRNG.generateInteger(3);
-            final boolean isGood = MathAndRNG.generateInteger(25) == 10;
-            switch (which) {
-                case 1:
-                    ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), BoosterItem.returnItemStack(isGood ? 3.F : 2.F));
-                    break;
-                case 2:
-                    ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), HasteBoostItem.returnItemStack(isGood ? 3.F : 2.F));
-                    break;
-                case 3:
-                    ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), FlightBoostItem.returnItemStack());
-                    if (isGood) {
-                        ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), BoosterItem.returnItemStack(1.5F));
-                    }
-                    break;
-            }
+        final int importance = importanceOf(ev.getDead());
 
-            if (which < 3) {
-                ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fVocê ganhou um booster de " + (which == 1 ? "Cobblestone" : "Haste") + " de " + (isGood ? "3x" : "2x"));
-            }else ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fVocê ganhou um booster de voar" + (isGood ? " e de cobblestone! (1.5x)" : "!"));
-            ev.getPlayer().sendMessage("§e(O drop está em cima da farm!)");
-            ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
-        }else {
-            if (random < 31 && random > 24) {
-                final List<Material> materials = new ArrayList<>(Arrays.asList(Material.values())).stream().filter(material -> {
-                    switch (material) {
-                        case DIAMOND:
-                        case DIAMOND_BLOCK:
-                        case GOLD_BLOCK:
-                            return true;
-                    }
-                    return material.name().contains("INGOT");
-                }).collect(Collectors.toList());
-                final Material m = materials.get(MathAndRNG.generateInteger(materials.size() - 1));
-                ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), new ItemStack(m, MathAndRNG.generateInteger(m.name().contains("BLOCK") ? 2 : 10)));
-                ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fAlguns minérios droparam na farm!");
-                ev.getPlayer().sendMessage("§e(Drop! Um minério dropou na sua farm!)");
-                ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_YES, 1F, 1F);
+        final int random = MathAndRNG.generateInteger(290 - (importance * (importance > 3 ? 30 : 18)));
+        // ev.getPlayer().sendMessage("r: " + random);
+        if (importance == 20) {
+            rollBooster(ev);
+            return;
+        }
+
+        if (importance == 10) {
+            final int newRandom = MathAndRNG.generateInteger(10);
+            if (newRandom == 4) {
+                rollBooster(ev);
+            } else if (newRandom == 5) {
+                rollOre(ev);
+            }
+            return;
+        }
+
+        if (random == 5) {
+            rollBooster(ev);
+        } else {
+            if (random < 35 && random > 20) {
+                rollOre(ev);
             }
         }
     }
 
+    private void rollBooster(final KillFarmMobEvent ev) {
+        final int which = MathAndRNG.generateInteger(3);
+        final boolean isGood = MathAndRNG.generateInteger(24) == 10;
+        switch (which) {
+            case 1:
+                ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), BoosterItem.returnItemStack(isGood ? 3.F : 2.F));
+                break;
+            case 2:
+                ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), HasteBoostItem.returnItemStack(isGood ? 3.F : 2.F));
+                break;
+            case 3:
+                ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), FlightBoostItem.returnItemStack());
+                if (isGood) {
+                    ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), BoosterItem.returnItemStack(1.5F));
+                }
+                break;
+        }
+
+        if (which < 3) {
+            ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fVocê ganhou um booster de " + (which == 1 ? "Cobblestone" : "Haste") + " de " + (isGood ? "3x" : "2x"));
+        }else ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fVocê ganhou um booster de voar" + (isGood ? " e de cobblestone! (1.5x)" : "!"));
+        ev.getPlayer().sendMessage("§e(O drop está em cima da farm!)");
+        ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+    }
+
+    private void rollOre(final KillFarmMobEvent ev) {
+        final List<Material> materials = new ArrayList<>(Arrays.asList(Material.values())).stream().filter(material -> {
+            switch (material) {
+                case DIAMOND:
+                case DIAMOND_BLOCK:
+                case GOLD_BLOCK:
+                case COAL:
+                case IRON_BLOCK:
+                case NETHERITE_BLOCK:
+                    return true;
+            }
+            return material.name().contains("INGOT");
+        }).collect(Collectors.toList());
+        final Material m = materials.get(MathAndRNG.generateInteger(materials.size() - 1));
+        ev.getFarm().location.getWorld().dropItemNaturally(ev.getFarm().location.clone().add(0, 1.5, 0), new ItemStack(m, MathAndRNG.generateInteger(m.name().contains("BLOCK") ? 2 : 10)));
+        ev.getPlayer().sendTitle("§2§lDROP DE FARM", "§fAlguns minérios droparam na farm!");
+        ev.getPlayer().sendMessage("§e(Drop! Um minério dropou na sua farm!)");
+        ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_YES, 1F, 1F);
+    }
+
     public int importanceOf(final LivingEntity entity) {
-        if (entity.getMaxHealth() < 20) {
-            return 1;
-        }else if (entity.getMaxHealth() < 24) {
-            return 2;
-        }else if (entity.getMaxHealth() < 30) {
-            return 3;
-        }else {
-            return 4;
+        switch (entity.getType()) {
+            case GIANT:
+            case ELDER_GUARDIAN:
+            case GHAST:
+                return 10;
+            case WITHER:
+                return 20;
+            default:
+                if (entity.getMaxHealth() < 20) {
+                    return 1;
+                }else if (entity.getMaxHealth() < 24) {
+                    return 2;
+                }else if (entity.getMaxHealth() < 30) {
+                    return 4;
+                }else {
+                    return 5;
+                }
         }
     }
 }

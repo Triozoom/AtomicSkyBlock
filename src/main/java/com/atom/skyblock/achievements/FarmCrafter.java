@@ -5,6 +5,7 @@ import com.atom.skyblock.api.CraftFarmEvent;
 import com.atom.skyblock.data.DataManager;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,6 +44,11 @@ public class FarmCrafter extends Achievement {
     @Override
     public Type type() {
         return Type.ACTION;
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.IRON_HOE;
     }
 
     @Override

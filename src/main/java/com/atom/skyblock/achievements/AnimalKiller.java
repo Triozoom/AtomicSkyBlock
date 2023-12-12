@@ -44,6 +44,11 @@ public class AnimalKiller extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.SKELETON_SKULL;
+    }
+
+    @Override
     public Type type() {
         return Type.ACTION;
     }

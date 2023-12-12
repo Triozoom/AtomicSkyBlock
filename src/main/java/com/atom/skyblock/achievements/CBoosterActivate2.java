@@ -4,6 +4,7 @@ import com.atom.skyblock.SBMain;
 import com.atom.skyblock.api.BoosterActivateEvent;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,6 +43,11 @@ public class CBoosterActivate2 extends Achievement {
     @Override
     public Type type() {
         return Type.ACTION;
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.BEACON;
     }
 
     @Override

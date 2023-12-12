@@ -65,6 +65,11 @@ public class Erradication extends Achievement {
         this.conclude(player);
     }
 
+    @Override
+    public Material itemDisplay() {
+        return Material.NETHERITE_SWORD;
+    }
+
     @EventHandler
     public void onKill(final KillFarmMobEvent ev) {
         if (ev.getPlayer() != null) {

@@ -57,6 +57,11 @@ public class MobKillSpree extends Achievement {
         this.conclude(player);
     }
 
+    @Override
+    public Material itemDisplay() {
+        return Material.STONE_SWORD;
+    }
+
     @EventHandler
     public void onKill(final KillFarmMobEvent ev) {
         if (ev.getPlayer() != null) {

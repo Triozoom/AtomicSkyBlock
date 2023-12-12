@@ -45,6 +45,11 @@ public class ZombieKiller extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.ROTTEN_FLESH;
+    }
+
+    @Override
     public Type type() {
         return Type.ACTION;
     }

@@ -50,6 +50,11 @@ public class FlyingHigh extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.ENDER_CHEST;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.ENDER_EYE, 3));
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.NETHERITE_INGOT, 2));

@@ -56,6 +56,11 @@ public class SkellyKiller extends Achievement {
         this.conclude(player);
     }
 
+    @Override
+    public Material itemDisplay() {
+        return Material.BONE;
+    }
+
     @EventHandler
     public void onKillAnimal(final EntityDeathEvent ev) {
         if (ev.getEntity().getKiller() != null && ev.getEntity() instanceof Skeleton) {

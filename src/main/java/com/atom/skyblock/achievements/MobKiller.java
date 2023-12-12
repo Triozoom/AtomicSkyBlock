@@ -54,6 +54,11 @@ public class MobKiller extends Achievement {
         this.conclude(player);
     }
 
+    @Override
+    public Material itemDisplay() {
+        return Material.WOODEN_SWORD;
+    }
+
     @EventHandler
     public void onKill(final KillFarmMobEvent ev) {
         if (ev.getPlayer() != null) {

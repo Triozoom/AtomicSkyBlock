@@ -44,6 +44,11 @@ public class BoosterActivate3 extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.FEATHER;
+    }
+
+    @Override
     public Type type() {
         return Type.ACTION;
     }

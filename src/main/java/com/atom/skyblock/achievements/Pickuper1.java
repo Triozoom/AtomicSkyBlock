@@ -32,6 +32,11 @@ public class Pickuper1 extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.COBBLESTONE;
+    }
+
+    @Override
     public JavaPlugin source() {
         return SBMain.INSTANCE;
     }

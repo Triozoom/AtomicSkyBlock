@@ -52,6 +52,11 @@ public class MobGenocide extends Achievement {
     }
 
     @Override
+    public Material itemDisplay() {
+        return Material.IRON_SWORD;
+    }
+
+    @Override
     public void onComplete(Player player) {
         final ItemStack potion = new ItemStack(Material.POTION);
         final PotionMeta pm = (PotionMeta) potion.getItemMeta();

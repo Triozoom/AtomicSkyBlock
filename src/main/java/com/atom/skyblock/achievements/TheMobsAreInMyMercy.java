@@ -5,6 +5,7 @@ import com.atom.skyblock.data.DataManager;
 import com.atom.skyblock.farms.items.FarmItemManager;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -44,6 +45,11 @@ public class TheMobsAreInMyMercy extends Achievement {
     @Override
     public Type type() {
         return Type.ACTION;
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.BLAZE_SPAWN_EGG;
     }
 
     @Override

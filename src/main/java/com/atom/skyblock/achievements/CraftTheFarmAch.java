@@ -6,6 +6,7 @@ import com.atom.skyblock.farms.Farm;
 import com.atom.skyblock.powerups.impl.BoosterItem;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -51,6 +52,11 @@ public class CraftTheFarmAch extends Achievement {
         SBMain.totalGlobalCobblestoneBroken+= 3500;
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, BoosterItem.returnItemStack(10.F));
         this.conclude(player);
+    }
+
+    @Override
+    public Material itemDisplay() {
+        return Material.WITHER_SKELETON_SPAWN_EGG;
     }
 
     @EventHandler

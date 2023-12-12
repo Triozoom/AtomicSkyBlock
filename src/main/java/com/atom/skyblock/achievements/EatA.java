@@ -52,6 +52,11 @@ public class EatA extends Achievement {
         this.conclude(player);
     }
 
+    @Override
+    public Material itemDisplay() {
+        return Material.CARROT;
+    }
+
     @EventHandler
     public void onConsoom(final PlayerItemConsumeEvent ev) {
         if (!AchievementAPI.hasCompleted(ev.getPlayer(), this)) {
