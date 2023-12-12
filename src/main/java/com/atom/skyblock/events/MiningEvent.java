@@ -16,6 +16,7 @@ import io.puharesource.mc.titlemanager.api.v2.*;
 import com.atom.skyblock.powerups.impl.BoosterItem;
 import com.atom.skyblock.powerups.PowerupManager;
 import org.bukkit.block.Chest;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.block.*;
 import org.bukkit.inventory.*;
 import org.bukkit.event.*;
@@ -455,6 +456,13 @@ public class MiningEvent implements Listener
         if (!(im instanceof Damageable)) {
             return false;
         }
+
+        final int random = MathAndRNG.generateInteger(5);
+
+        final boolean shouldDamage = (is.getEnchantments().containsKey(Enchantment.DURABILITY) ? (random > (3 - (is.getEnchantments().get(Enchantment.DURABILITY) - 1))) : random != 1); // UNBREAKING 3 WILL BE 1/5 DAMAGES; UB 2 2/5, UB 1 3/5, NO UB 4/5.
+
+        if (!shouldDamage) return false;
+
         final String typeName = is.getType().name().toUpperCase();
         if (!typeName.contains("SWORD") &&
                 !typeName.contains("PICKAXE") &&
@@ -467,7 +475,7 @@ public class MiningEvent implements Listener
         is.setItemMeta((ItemMeta)itemdmg);
         if (is.getType().getMaxDurability() <= itemdmg.getDamage()) {
             soundEffecter.playSound(soundEffecter.getLocation(), Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
-            soundEffecter.sendMessage("§7You broke the block a bit too much, your tool broke! Change it if you're not AFK.");
+            soundEffecter.sendMessage("§7Sua ferramenta quebrou! Recoloque-a se não estiver AFK.");
             is.setAmount(is.getAmount() - 1);
             return true;
         }

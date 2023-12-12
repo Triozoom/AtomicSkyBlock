@@ -259,8 +259,7 @@ public class FarmEvents implements Listener {
     public void onKill(final KillFarmMobEvent ev) {
         final int importance = importanceOf(ev.getDead());
 
-        final int random = MathAndRNG.generateInteger(290 - (importance * (importance > 3 ? 30 : 18)));
-        // ev.getPlayer().sendMessage("r: " + random);
+        // ev.getPlayer().sendMessage("i: " + importance);
         if (importance == 20) {
             rollBooster(ev);
             return;
@@ -275,6 +274,13 @@ public class FarmEvents implements Listener {
             }
             return;
         }
+
+        /*
+            This later since if importance is too big it will go out of bounds.
+            Which is reasonable, right?
+         */
+
+        final int random = MathAndRNG.generateInteger(290 - (importance * (importance > 3 ? 30 : 18)));
 
         if (random == 5) {
             rollBooster(ev);
