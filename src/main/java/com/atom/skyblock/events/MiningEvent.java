@@ -459,7 +459,7 @@ public class MiningEvent implements Listener
 
         final int random = MathAndRNG.generateInteger(5);
 
-        final boolean shouldDamage = (is.getEnchantments().containsKey(Enchantment.DURABILITY) ? (random > (3 - (is.getEnchantments().get(Enchantment.DURABILITY) - 1))) : random != 1); // UNBREAKING 3 WILL BE 1/5 DAMAGES; UB 2 2/5, UB 1 3/5, NO UB 4/5.
+        final boolean shouldDamage = (is.getEnchantments().containsKey(Enchantment.DURABILITY) ? (random < (4 - (is.getEnchantments().get(Enchantment.DURABILITY) - 1))) : random != 1); // UNBREAKING 3 WILL BE 1/5 DAMAGES; UB 2 2/5, UB 1 3/5, NO UB 4/5.
 
         if (!shouldDamage) return false;
 
