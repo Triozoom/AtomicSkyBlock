@@ -31,7 +31,7 @@ public class SkellyKiller extends Achievement {
 
     @Override
     public String id() {
-        return "asb_a_mastery_2";
+        return "asb_a_mastery_skel";
     }
 
     @Override
