@@ -2,9 +2,12 @@ package com.atom.skyblock.papi;
 
 import com.atom.skyblock.SBMain;
 import com.atom.skyblock.configuration.SBConfig;
+import com.atom.skyblock.data.DataManager;
+import com.atom.skyblock.farms.FarmManager;
 import dev.joel.bukkitutil.BukkitUtil;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 public class PAPI extends PlaceholderExpansion {
 
@@ -55,6 +58,12 @@ public class PAPI extends PlaceholderExpansion {
                 case 6:
                     return "Você já terminou o jogo!";
             }
+        }else if (params.equalsIgnoreCase("blocks_broken") && player != null && player.isOnline()) {
+            return "" + DataManager.get((Player) player).blocksBroken;
+        }else if (params.equalsIgnoreCase("farm_count") && player != null && player.isOnline()) {
+            return "" + DataManager.get((Player) player).ownedFarms.size();
+        }else if (params.equalsIgnoreCase("total_farm_count")) {
+            return "" + FarmManager.allFarms.size();
         }
         return null;
     }

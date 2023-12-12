@@ -18,33 +18,33 @@ public class OnUpdatePhase implements Listener
     @EventHandler
     public void onUpdatePhase(final PhaseUpdateEvent ev) {
         for (final Player afklnslka : Bukkit.getOnlinePlayers()) {
-            this.api.sendTitles(afklnslka, "§3§lYOU HAVE REACHED", "§f§lPHASE " + ev.getNewPhase());
+            this.api.sendTitles(afklnslka, "§3§lVOCÊ CHEGOU NA", "§f§lPHASE " + ev.getNewPhase());
             afklnslka.getWorld().spawn(afklnslka.getLocation(), Firework.class);
             afklnslka.playSound(afklnslka.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         }
         switch (ev.getNewPhase()) {
             case 1: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! You have started the skyblock adventure! Good luck! Phase Theme: Plains");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! Você começou a jornada no Atom SkyBlock! Tema: Planícies");
                 break;
             }
             case 2: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! You're Gettin Advanced: Here we go on preparing for the worst, in the other world, THE NETHER. You're up for the challange, like you should be. Let us go for them blaze rods!");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! Agora estás se preparando para sua nova jornada no Nether! Tema: Preparação");
                 break;
             }
             case 3: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! In The Nether: The nether has come, trying to get out of the fortress unhurt.");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! O Nether chegou! Agora que te preparaste, irás lutar contra blazes! Dica: pegue as blaze rods.");
                 break;
             }
             case 4: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! Out to the end: You've gotten the blaze rods. You've come far, now prepare to finish it off!");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! Você agora que lutou contra blazes e o Nether estás se preparando para o End! Tema: Pós Nether.");
                 break;
             }
             case 5: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! THE END: Enough is enough, the dragon shall be gone. You've reached it, now get it done.");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! THE END: Estás na phase que te dará os portais para o The End! Cria os olhos do fim para continuar na sua jornada.");
                 break;
             }
             case 6: {
-                Bukkit.broadcastMessage("§3§lASB §8» §aCongrats! AFTER PHASES: You reached the top of the mountain. Where the SKYBLOCK GODS belong.");
+                Bukkit.broadcastMessage("§3§lASB §8» §aParabéns! Você chegou no nível extra, onde os deuses do SkyBlock ficam. Aqui terás itens, baús e mobs de todos os outros níveis (phases)!");
                 break;
             }
         }

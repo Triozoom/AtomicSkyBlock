@@ -1,6 +1,7 @@
 package com.atom.skyblock.ultilidadesfodas;
 
 import com.atom.skyblock.SBMain;
+import com.atom.skyblock.configuration.SBConfig;
 import io.puharesource.mc.titlemanager.api.v2.*;
 
 import java.io.*;
@@ -123,7 +124,7 @@ public class Database
             SBMain.totalGlobalCobblestoneBroken = 0;
             SBMain.phase = 1;
             final PreparedStatement stm = Database.con.prepareStatement("UPDATE `skyblock` SET blocksbroken=0");
-            final PreparedStatement stm2 = Database.con.prepareStatement("UPDATE `skyblock` SET blocksbroken=1");
+            final PreparedStatement stm2 = Database.con.prepareStatement("UPDATE `skyblock` SET phase=1"); /* what the fuck did I do here bro. literally making the plugin unusable if you reset and then log off without getting to a new phase. dumbass. */
             stm.execute();
             stm2.execute();
             for (final Player all : Bukkit.getOnlinePlayers()) {
@@ -133,6 +134,24 @@ public class Database
         }
         catch (SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public static int getBlocksNeededForNewPhase() {
+        switch (SBMain.phase) {
+            case 1:
+                return SBConfig.blocksBrokenPhase2;
+            case 2:
+                return SBConfig.blocksBrokenPhase3;
+            case 3:
+                return SBConfig.blocksBrokenPhase4;
+            case 4:
+                return SBConfig.blocksBrokenPhase5;
+            case 5:
+                return SBConfig.blocksBrokenPhase6;
+            case 6:
+                return -1;
+            default: return -2;
         }
     }
     

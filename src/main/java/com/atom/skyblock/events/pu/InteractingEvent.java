@@ -1,6 +1,7 @@
 package com.atom.skyblock.events.pu;
 
 import com.atom.skyblock.SBMain;
+import com.atom.skyblock.api.BoosterActivateEvent;
 import com.atom.skyblock.powerups.impl.BoosterItem;
 import com.atom.skyblock.powerups.PowerupManager;
 import com.atom.skyblock.powerups.impl.FlightBoostItem;
@@ -33,6 +34,8 @@ public class InteractingEvent implements Listener {
             final String dn = e.getItem().getItemMeta().getDisplayName();
             if (dn.startsWith("§6§lACTIVATE")) {
                 if (BoosterItem.verify(e.getItem())) {
+                    final BoosterActivateEvent ev = new BoosterActivateEvent(e.getPlayer(), BoosterActivateEvent.BoosterType.COMMON_STONE);
+                    Bukkit.getPluginManager().callEvent(ev);
                     final float f = BoosterItem.returnBoostAmountFromIs(e.getItem());
                     PowerupManager.cobbleBoost = f;
                     if (runCobble != null && PowerupManager.cobbleBoostTimeLeft > 0) {
@@ -65,6 +68,8 @@ public class InteractingEvent implements Listener {
                     }
                     e.getItem().setAmount(e.getItem().getAmount() - 1);
                 } else if (FlightBoostItem.verify(e.getItem())) {
+                    final BoosterActivateEvent ev = new BoosterActivateEvent(e.getPlayer(), BoosterActivateEvent.BoosterType.FLIGHT);
+                    Bukkit.getPluginManager().callEvent(ev);
                     PowerupManager.flightBoostEnabled = true;
                     if (runFlight != null && PowerupManager.flightBoostTimeLeft > 0) {
                         PowerupManager.flightBoostTimeLeft += 18000L;
@@ -112,6 +117,8 @@ public class InteractingEvent implements Listener {
 
                 // HASTE //
                 }else if (HasteBoostItem.verify(e.getItem())) {
+                    final BoosterActivateEvent ev = new BoosterActivateEvent(e.getPlayer(), BoosterActivateEvent.BoosterType.HASTE);
+                    Bukkit.getPluginManager().callEvent(ev);
                     final float f = HasteBoostItem.returnBoostAmountFromIs(e.getItem());
                     PowerupManager.hasteBoost = f;
                     if (runHaste != null && PowerupManager.hasteBoostTimeLeft > 0) {

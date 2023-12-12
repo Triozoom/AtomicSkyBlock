@@ -1,8 +1,13 @@
 package com.atom.skyblock.events;
 
 import com.atom.skyblock.SBMain;
+import com.atom.skyblock.api.GlobalCobblestoneMineEvent;
 import com.atom.skyblock.api.PhaseUpdateEvent;
+import com.atom.skyblock.api.VoidDeathEvent;
 import com.atom.skyblock.configuration.SBConfig;
+import com.atom.skyblock.data.DataManager;
+import com.atom.skyblock.farms.Farm;
+import com.atom.skyblock.farms.items.FarmItemManager;
 import com.atom.skyblock.powerups.impl.FlightBoostItem;
 import com.atom.skyblock.powerups.impl.HasteBoostItem;
 import com.atom.skyblock.ultilidadesfodas.LootChests;
@@ -23,6 +28,8 @@ public class MiningEvent implements Listener
 {
     TitleManagerAPI api;
     private boolean hasChangedLastTime;
+    private int failed;
+    private int delayIfUnlucky;
     private final Material[] p1Blocks;
     private final EntityType[] p1Entities;
     private final Material[] p2Blocks;
@@ -55,13 +62,17 @@ public class MiningEvent implements Listener
     public void shit(final BlockBreakEvent ev) {
         if (ev.getBlock().getLocation().equals(SBMain.globalCobblestoneLocation)) {
             ev.setCancelled(true);
+            final GlobalCobblestoneMineEvent vde = new GlobalCobblestoneMineEvent(ev.getPlayer(), ev.getBlock().getType());
+            Bukkit.getPluginManager().callEvent(vde);
             SBMain.totalGlobalCobblestoneBroken += (int)(1 * PowerupManager.cobbleBoost);
+            DataManager.get(ev.getPlayer()).blocksBroken++;
+            DataManager.get(ev.getPlayer()).blocksBrokenHaste = (PowerupManager.hasteBoostTimeLeft > 0 ? DataManager.get(ev.getPlayer()).blocksBrokenHaste + 1 : 0);
             this.api.sendActionbar(ev.getPlayer(), "§3Total Broken: §b" + SBMain.totalGlobalCobblestoneBroken);
             if (this.applyDamage(ev.getPlayer().getItemInHand(), 1, ev.getPlayer())) {
                 ev.getPlayer().getInventory().remove(ev.getPlayer().getItemInHand());
             }
 
-            if (ev.getBlock().getType().equals(Material.CHEST)) {
+            if (ev.getBlock().getType().equals(Material.CHEST) && !ev.getPlayer().isSneaking()) { /* sneaking check because if you don't want the items you can just empty the chest */
                 Chest ch = (Chest) ev.getBlock().getState();
                 for (ItemStack in : ch.getBlockInventory().getContents()) {
                     if (in == null) continue;
@@ -71,6 +82,41 @@ public class MiningEvent implements Listener
 
             boolean b = false;
             if (ev.getPlayer().getInventory().firstEmpty() == -1) b = true;
+
+            final int gokewasgjkan = MathAndRNG.generateInteger(2000);
+            if (gokewasgjkan == 69) {
+                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.OVERWORLD_NON_DANGER);
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Animais do Overworld! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+            }
+
+            final int gijgwewyt = MathAndRNG.generateInteger(3000);
+            if (gijgwewyt == 69) {
+                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.OVERWORLD);
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Overworld! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+            }
+
+            final int asgewhwh = MathAndRNG.generateInteger(4200);
+            if (asgewhwh == 69) {
+                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.NETHER);
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Nether! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+            }
+
+            final int gjnajnnethe = MathAndRNG.generateInteger(5000);
+            if (gjnajnnethe == 69) {
+                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL);
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs! (Muito Rara)" + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§a§lDROP RARO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm rara!"));
+                ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+            }
+
+            final int hkjtyk = MathAndRNG.generateInteger(6250);
+            if (hkjtyk == 69) {
+                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL_NON_DANGER);
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs e Animais! (Extremamente Rara)" + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§6§lDROP MÍTICO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm MUITO RARA!"));
+                ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+            }
+
 
             final int cobblePu = MathAndRNG.generateInteger(1000);
             if (cobblePu == 69) {
@@ -226,9 +272,37 @@ public class MiningEvent implements Listener
             }
         }
         else {
-            ev.getBlock().setType(Material.COBBLESTONE);
-            this.hasChangedLastTime = false;
+            boolean b = true;
+            if (MathAndRNG.generateInteger(5) < 3 || failed > 3 || delayIfUnlucky > 0 || ev.getBlock().getType().name().toLowerCase().contains("chest") || isOre(ev.getBlock().getType())) {
+                ev.getBlock().setType(Material.COBBLESTONE);
+                b = false;
+                if (delayIfUnlucky > 0) delayIfUnlucky--;
+                if (failed > 3) delayIfUnlucky = MathAndRNG.generateInteger(12);
+                failed = 0;
+            }else failed++;
+            if (!b) this.hasChangedLastTime = false;
         }
+    }
+
+    public boolean isOre(final Material m) {
+        if (m.name().contains("ORE")) return true;
+        else {
+           switch (m) {
+               case IRON_BLOCK:
+               case RAW_IRON_BLOCK:
+               case DIAMOND_BLOCK:
+               case GOLD_BLOCK:
+               case RAW_GOLD_BLOCK:
+               case LAPIS_BLOCK:
+               case REDSTONE_BLOCK:
+               case RAW_COPPER_BLOCK:
+               case COPPER_BLOCK:
+               case WAXED_COPPER_BLOCK:
+                   return true;
+           }
+        }
+
+        return false;
     }
 
     private void runPhase2(final BlockBreakEvent ev) {
@@ -256,8 +330,15 @@ public class MiningEvent implements Listener
             }
         }
         else {
-            ev.getBlock().setType(Material.COBBLESTONE);
-            this.hasChangedLastTime = false;
+            boolean b = true;
+            if (MathAndRNG.generateInteger(5) < 3 || failed > 3 || delayIfUnlucky > 0 || ev.getBlock().getType().name().toLowerCase().contains("chest") || isOre(ev.getBlock().getType())) {
+                ev.getBlock().setType(Material.COBBLESTONE);
+                b = false;
+                if (delayIfUnlucky > 0) delayIfUnlucky--;
+                if (failed > 3) delayIfUnlucky = MathAndRNG.generateInteger(12);
+                failed = 0;
+            }else failed++;
+            if (!b) this.hasChangedLastTime = false;
         }
     }
 
@@ -286,8 +367,12 @@ public class MiningEvent implements Listener
             }
         }
         else {
-            ev.getBlock().setType(Material.COBBLESTONE);
-            this.hasChangedLastTime = false;
+            boolean b = true;
+            if (MathAndRNG.generateInteger(5) < 3 || failed > 3 || delayIfUnlucky > 0 || ev.getBlock().getType().name().toLowerCase().contains("chest") || isOre(ev.getBlock().getType())) {
+                ev.getBlock().setType(Material.COBBLESTONE);
+                b = false;
+            }
+            if (!b) this.hasChangedLastTime = false;
         }
     }
 
@@ -316,8 +401,15 @@ public class MiningEvent implements Listener
             }
         }
         else {
-            ev.getBlock().setType(Material.COBBLESTONE);
-            this.hasChangedLastTime = false;
+            boolean b = true;
+            if (MathAndRNG.generateInteger(5) < 3 || failed > 3 || delayIfUnlucky > 0 || ev.getBlock().getType().name().toLowerCase().contains("chest") || isOre(ev.getBlock().getType())) {
+                ev.getBlock().setType(Material.COBBLESTONE);
+                b = false;
+                if (delayIfUnlucky > 0) delayIfUnlucky--;
+                if (failed > 3) delayIfUnlucky = MathAndRNG.generateInteger(12);
+                failed = 0;
+            }else failed++;
+            if (!b) this.hasChangedLastTime = false;
         }
     }
 
@@ -346,8 +438,15 @@ public class MiningEvent implements Listener
             }
         }
         else {
-            ev.getBlock().setType(Material.COBBLESTONE);
-            this.hasChangedLastTime = false;
+            boolean b = true;
+            if (MathAndRNG.generateInteger(5) < 3 || failed > 3 || delayIfUnlucky > 0 || ev.getBlock().getType().name().toLowerCase().contains("chest") || isOre(ev.getBlock().getType())) {
+                ev.getBlock().setType(Material.COBBLESTONE);
+                b = false;
+                if (delayIfUnlucky > 0) delayIfUnlucky--;
+                if (failed > 3) delayIfUnlucky = MathAndRNG.generateInteger(12);
+                failed = 0;
+            }else failed++;
+            if (!b) this.hasChangedLastTime = false;
         }
     }
     

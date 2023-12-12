@@ -149,7 +149,7 @@ public class LootChests
                 final Inventory inv = chest.getBlockInventory();
                 final ItemStack netherrack = new ItemStack(Material.NETHERRACK, MathAndRNG.generateInteger(64));
                 final ItemStack powder = new ItemStack(Material.BLAZE_POWDER, MathAndRNG.generateInteger(4));
-                final ItemStack witherskull = new ItemStack(Material.WITHER_SKELETON_SKULL, MathAndRNG.generateInteger(2));
+                final ItemStack witherskull = new ItemStack(Material.WITHER_SKELETON_SKULL, MathAndRNG.generateInteger(3));
                 final ItemStack bucket = new ItemStack(Material.POWDER_SNOW_BUCKET, MathAndRNG.generateInteger(2));
                 final ItemStack soulsand = new ItemStack(Material.SOUL_SAND, MathAndRNG.generateInteger(24));
                 final ItemStack[] array;
