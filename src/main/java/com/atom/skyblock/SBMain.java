@@ -19,6 +19,7 @@ import dev.joel.bukkitutil.sql.enums.UpdateType;
 import lombok.SneakyThrows;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.*;
 import org.bukkit.block.*;
@@ -81,6 +82,17 @@ public final class SBMain extends JavaPlugin
         SBMain.globalCobblestone = SBMain.globalCobblestoneLocation.getBlock();
 
         BukkitUtil.INSTANCE.getConfigUtil().registerConfigurationSetting(SBConfig.class);
+
+        /*
+            Removing last restart "farm mobs" before continuing
+         */
+        for (final Entity entities : world.getEntities()) {
+            if (entities instanceof LivingEntity) {
+                if (entities.getCustomName() != null && entities.getCustomName().startsWith("_farmmob")) {
+                    entities.remove();
+                }
+            }
+        }
 
         FarmManager.loadOfflineFarms();
 
