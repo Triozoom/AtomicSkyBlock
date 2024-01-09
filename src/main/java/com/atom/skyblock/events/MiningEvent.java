@@ -87,35 +87,41 @@ public class MiningEvent implements Listener
             final int gokewasgjkan = MathAndRNG.generateInteger(2000);
             if (gokewasgjkan == 69) {
                 FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.OVERWORLD_NON_DANGER);
-                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Animais do Overworld! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Animais do Overworld! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
             }
 
             final int gijgwewyt = MathAndRNG.generateInteger(3000);
             if (gijgwewyt == 69) {
                 FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.OVERWORLD);
-                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Overworld! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Overworld! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
             }
 
-            final int asgewhwh = MathAndRNG.generateInteger(4200);
-            if (asgewhwh == 69) {
-                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.NETHER);
-                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Nether! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+            // changed so it ain't
+
+            if (SBMain.phase > 2) {
+                final int asgewhwh = MathAndRNG.generateInteger(4200);
+                if (asgewhwh == 69) {
+                    FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.NETHER);
+                    ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Mobs do Nether! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
+                }
+
+                final int gjnajnnethe = MathAndRNG.generateInteger(5000);
+                if (gjnajnnethe == 69) {
+                    FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL);
+                    ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs! (Muito Rara) " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
+                    Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§a§lDROP RARO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm rara!"));
+                    ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+                }
             }
 
-            final int gjnajnnethe = MathAndRNG.generateInteger(5000);
-            if (gjnajnnethe == 69) {
-                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL);
-                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs! (Muito Rara)" + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
-                Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§a§lDROP RARO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm rara!"));
-                ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
-            }
-
-            final int hkjtyk = MathAndRNG.generateInteger(6250);
-            if (hkjtyk == 69) {
-                FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL_NON_DANGER);
-                ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs e Animais! (Extremamente Rara)" + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
-                Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§6§lDROP MÍTICO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm MUITO RARA!"));
-                ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+            if (SBMain.phase > 3) {
+                final int hkjtyk = MathAndRNG.generateInteger(6250);
+                if (hkjtyk == 69) {
+                    FarmItemManager.give(ev.getPlayer(), Farm.EntitiesType.ALL_NON_DANGER);
+                    ev.getPlayer().sendMessage("§eVocê ganhou uma farm de Todos os Mobs e Animais! (Extremamente Rara) " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
+                    Bukkit.getOnlinePlayers().forEach(pl -> this.api.sendTitles(pl, "§6§lDROP MÍTICO", "§fO jogador " + ev.getPlayer().getName() + " pegou uma farm MUITO RARA!"));
+                    ev.getPlayer().playSound(ev.getPlayer().getLocation(), Sound.BLOCK_ANVIL_PLACE, 1F, 1F);
+                }
             }
 
 
@@ -123,13 +129,13 @@ public class MiningEvent implements Listener
             if (cobblePu == 69) {
                 if (!b) ev.getPlayer().getInventory().addItem(BoosterItem.returnItemStack(2.f));
                 else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), BoosterItem.returnItemStack(2.f));
-                ev.getPlayer().sendMessage("§eVocê pegou um booster de 2x cobble! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                ev.getPlayer().sendMessage("§eVocê pegou um booster de 2x cobble! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
             }else {
                 final int pu = MathAndRNG.generateInteger(2000);
                 if (pu == 69) {
                     if (!b) ev.getPlayer().getInventory().addItem(BoosterItem.returnItemStack(3.f));
                     else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), BoosterItem.returnItemStack(3.f));
-                    ev.getPlayer().sendMessage("§eVocê pegou um booster de 3x cobble! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                    ev.getPlayer().sendMessage("§eVocê pegou um booster de 3x cobble! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
                 }
             }
 
@@ -137,13 +143,13 @@ public class MiningEvent implements Listener
             if (hastePu == 69) {
                 if (!b) ev.getPlayer().getInventory().addItem(HasteBoostItem.returnItemStack(2.f));
                 else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), HasteBoostItem.returnItemStack(2.f));
-                ev.getPlayer().sendMessage("§eVocê pegou um booster de 2x mining speed! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                ev.getPlayer().sendMessage("§eVocê pegou um booster de 2x mining speed! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
             }else {
                 final int pu = MathAndRNG.generateInteger(1540);
                 if (pu == 69) {
                     if (!b) ev.getPlayer().getInventory().addItem(HasteBoostItem.returnItemStack(3.f));
                     else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), HasteBoostItem.returnItemStack(3.f));
-                    ev.getPlayer().sendMessage("§eVocê pegou um booster de 3x mining speed! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                    ev.getPlayer().sendMessage("§eVocê pegou um booster de 3x mining speed! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
                 }
             }
 
@@ -151,7 +157,7 @@ public class MiningEvent implements Listener
             if (flightPu == 69) {
                 if (!b) ev.getPlayer().getInventory().addItem(FlightBoostItem.returnItemStack());
                 else ev.getPlayer().getWorld().dropItemNaturally(ev.getBlock().getLocation(), FlightBoostItem.returnItemStack());
-                ev.getPlayer().sendMessage("§eVocê pegou um booster de voar! " + (b ? "Ele foi dropado pois seu inventário está cheio!" : "Olhe seu inventário!"));
+                ev.getPlayer().sendMessage("§eVocê pegou um booster de voar! " + (b ? "§2Ele foi dropado pois seu inventário está cheio!" : "§aOlhe seu inventário!"));
             }
 
             if (SBMain.totalGlobalCobblestoneBroken <= SBConfig.blocksBrokenPhase2) {
