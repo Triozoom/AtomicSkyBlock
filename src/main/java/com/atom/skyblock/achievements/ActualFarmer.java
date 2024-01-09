@@ -53,6 +53,11 @@ public class ActualFarmer extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 360;
         this.conclude(player);

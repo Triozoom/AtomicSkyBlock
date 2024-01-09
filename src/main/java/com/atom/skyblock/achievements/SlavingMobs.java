@@ -56,14 +56,14 @@ public class SlavingMobs extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.EXTREMELY_RARE;
+    }
+
+    @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 1250;
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, BoosterItem.returnItemStack(6.F));
-        for (final Player online : Bukkit.getOnlinePlayers()) {
-            online.sendTitle("§3§lCONQUISTA LENDÁRIA FOI COMPLETA", "§fO jogador" + player.getName() + " completou uma conquista LENDÁRIA!");
-            online.playSound(online.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 3F, 0.65F);
-            online.playSound(online.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 3F, 1.3F);
-        }
         this.conclude(player);
     }
 

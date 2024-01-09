@@ -41,6 +41,11 @@ public class FarmProfessional extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.VERY_RARE;
+    }
+
+    @Override
     public Type type() {
         return Type.ACTION;
     }

@@ -36,6 +36,11 @@ public class CreeperAwMan extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public String id() {
         return "asb_a_new_69";
     }

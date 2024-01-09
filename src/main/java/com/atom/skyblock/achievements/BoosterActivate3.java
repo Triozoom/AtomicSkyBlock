@@ -44,6 +44,11 @@ public class BoosterActivate3 extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public Material itemDisplay() {
         return Material.FEATHER;
     }

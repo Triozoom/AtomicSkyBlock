@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -73,7 +74,7 @@ public class InteractingEvent implements Listener {
                     PowerupManager.flightBoostEnabled = true;
                     if (runFlight != null && PowerupManager.flightBoostTimeLeft > 0) {
                         PowerupManager.flightBoostTimeLeft += 18000L;
-                        Bukkit.broadcastMessage(String.format("\n§9§lASB §7» §fUm booster de voar foi ativado por mais 15 minutos! Total: %.1f\n", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
+                        Bukkit.broadcastMessage(String.format("\n§9§lASB §7» §fUm booster de voar foi ativado por mais 15 minutos! Tem no total %.1fmin de tempo.\n", MathAndRNG.turnIntoMinutes(PowerupManager.flightBoostTimeLeft)));
                         for (final Player x : Bukkit.getOnlinePlayers()) {
                             x.sendTitle("§6§lUM BOOSTER FOI ATIVO", String.format("§fO jogador %s ativou um booster de voar!", e.getPlayer().getName()));
                             x.playSound(x.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.3f, 0.3f);
@@ -162,5 +163,10 @@ public class InteractingEvent implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void ogfjnkawgjnkma(final InventoryClickEvent e) {
+        if (e.getWhoClicked().getOpenInventory().getTitle().equalsIgnoreCase("§aReceitas")) e.setCancelled(true);
     }
 }

@@ -50,6 +50,12 @@ public class CBoosterActivate2 extends Achievement {
         return Material.BEACON;
     }
 
+
+    @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.VERY_RARE;
+    }
+
     @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 1150;

@@ -8,6 +8,11 @@ import com.atom.skyblock.farms.items.FarmItemManager;
 import com.atom.skyblock.powerups.PowerupManager;
 import com.atom.skyblock.ultilidadesfodas.Database;
 import com.atom.skyblock.ultilidadesfodas.MathAndRNG;
+import dev.joel.bukkitutil.ci.CustomInventory;
+import dev.joel.bukkitutil.ci.PlayerCustomInventory;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
@@ -44,6 +49,7 @@ public class cmd implements CommandExecutor
                     cs.sendMessage(" §e/asb next §8- §eInforma-te quantos blocos são necessários para alcançar a proxima Phase.");
                     cs.sendMessage(" §e/asb broken §8- §eInforma-te quantos blocos *você* já quebrou.");
                     cs.sendMessage(" §e/asb ab §8- §eInforma-te os boosters ativos.");
+                    cs.sendMessage(" §e/asb recipes §8- §eInforma-te as receitas para farms.");
                     if (cs instanceof Player) {
                         cs.sendMessage(" §e/asb voar §8- §eTe faz voar se há um boost de voar ativo.");
                         cs.sendMessage(" §e/asb spam <msg> §8- §eSpama algo.");
@@ -183,6 +189,10 @@ public class cmd implements CommandExecutor
                 return false;
             }
 
+            if (args.length == 1 && cs instanceof Player && args[0].equalsIgnoreCase("recipes")) {
+                ((Player)cs).openInventory(new TheGUI().create());
+            }
+
             if (!cs.hasPermission("asb.admin")) return true;
 
             if (args.length == 2) {
@@ -206,7 +216,111 @@ public class cmd implements CommandExecutor
         }
         return false;
     }
-    
+
+    public class TheGUI extends CustomInventory {
+        @Override
+        public Inventory create() {
+            final Inventory inv = Bukkit.createInventory(null, 27, "§aReceitas");
+
+            final ItemStack istack = new ItemStack(Material.GOLD_NUGGET);
+            final ItemMeta istackm = istack.getItemMeta();
+            istackm.setDisplayName("§eComo criar as farms");
+            istackm.setLore(
+                    Arrays.asList(
+                            " ",
+                            " §7Pegue todos os §bitens§7 da §areceita§7,",
+                            " §7depois jogue no §8chão§7. O SkyBlock vai",
+                            " §aautomaticamente §7criar a farm para você.",
+                            " §cCuidado para não fazer isto perto do §4void§c!",
+                            " "
+                    )
+            );
+
+            istack.setItemMeta(istackm);
+            inv.setItem(4, istack);
+
+            final ItemStack c1 = new ItemStack(Material.COPPER_INGOT);
+            final ItemStack c2 = new ItemStack(Material.IRON_INGOT);
+            final ItemStack c3 = new ItemStack(Material.GOLD_INGOT);
+            final ItemStack c4 = new ItemStack(Material.DIAMOND);
+            final ItemStack c5 = new ItemStack(Material.NETHERITE_INGOT);
+
+            final ItemMeta c1m = c1.getItemMeta();
+            final ItemMeta c2m = c2.getItemMeta();
+            final ItemMeta c3m = c3.getItemMeta();
+            final ItemMeta c4m = c4.getItemMeta();
+            final ItemMeta c5m = c5.getItemMeta();
+
+            c1m.setDisplayName("§aFarm de Animais do Overworld");
+            c2m.setDisplayName("§aFarm de Mobs do Overworld");
+            c3m.setDisplayName("§bFarm de Mobs do Nether");
+            c4m.setDisplayName("§bFarm de Todos os Mobs");
+            c5m.setDisplayName("§8Farm de Todos os Mobs e Animais");
+
+            final List<String> baseLore = Arrays.asList(
+                    " ",
+                    " §eReceita: "
+            );
+
+            final List<String> lore1 = new ArrayList<>(baseLore);
+            final List<String> lore2 = new ArrayList<>(baseLore);
+            final List<String> lore3 = new ArrayList<>(baseLore);
+            final List<String> lore4 = new ArrayList<>(baseLore);
+            final List<String> lore5 = new ArrayList<>(baseLore);
+
+            lore1.add(" §612x §7Flint");
+            lore1.add(" §630x §fIron Ingot");
+            lore1.add(" §61x §9Iron Sword");
+            lore1.add(" ");
+
+            lore2.add(" §612x §cCopper Ingot");
+            lore2.add(" §642x §fIron Ingot");
+            lore2.add(" §65x §bDiamond");
+            lore2.add(" §61x §9Iron Sword");
+            lore2.add(" ");
+
+            lore3.add(" §612x §eGold Ingot");
+            lore3.add(" §618x §5Obsidian");
+            lore3.add(" §61x §8Wither Skeleton Head");
+            lore3.add(" ");
+
+            lore4.add(" §610x §8Netherite Ingot");
+            lore4.add(" §624x §bDiamond");
+            lore4.add(" §62x §8Wither Skeleton Head");
+            lore4.add(" ");
+
+            lore5.add(" §67x §8Netherite Block");
+            lore5.add(" §610x §bDiamond Block");
+            lore5.add(" §62x §dDragon Head");
+            lore5.add(" ");
+
+            c1m.setLore(lore1);
+            c2m.setLore(lore2);
+            c3m.setLore(lore3);
+            c4m.setLore(lore4);
+            c5m.setLore(lore5);
+
+            c1.setItemMeta(c1m);
+            c2.setItemMeta(c2m);
+            c3.setItemMeta(c3m);
+            c4.setItemMeta(c4m);
+            c5.setItemMeta(c5m);
+
+            inv.setItem(11, c1);
+            inv.setItem(12, c2);
+            inv.setItem(13, c3);
+            inv.setItem(14, c4);
+            inv.setItem(15, c5);
+
+            final ItemStack is = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+
+            for (int i = 0; i < 27; i++) {
+                if (inv.getItem(i) == null || inv.getItem(i).getAmount() == 0 || inv.getItem(i).getType() == Material.AIR) inv.setItem(i, is);
+            }
+            return inv;
+        }
+    }
+
     static {
         cmd.canFlyCombat = true;
         cmd.waitingForConf = new ArrayList<UUID>();

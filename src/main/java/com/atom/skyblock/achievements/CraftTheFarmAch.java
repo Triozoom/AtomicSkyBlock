@@ -38,6 +38,11 @@ public class CraftTheFarmAch extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.EXTREMELY_RARE;
+    }
+
+    @Override
     public boolean showTitle() {
         return true;
     }

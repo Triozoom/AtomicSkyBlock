@@ -24,7 +24,7 @@ public class AchievementOne extends Achievement {
 
     @Override
     public String reward() {
-        return "2x Iron e 1x Enchada";
+        return "6x Flint e 1x Enchada";
     }
 
     @Override
@@ -54,7 +54,7 @@ public class AchievementOne extends Achievement {
 
     @Override
     public void onComplete(Player player) {
-        SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.IRON_ORE, 2));
+        SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.FLINT, 6));
         SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.IRON_HOE, 1));
         this.conclude(player);
     }

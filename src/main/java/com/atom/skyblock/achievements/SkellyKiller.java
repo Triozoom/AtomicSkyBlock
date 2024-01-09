@@ -35,6 +35,11 @@ public class SkellyKiller extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.RARE;
+    }
+
+    @Override
     public JavaPlugin source() {
         return SBMain.INSTANCE;
     }

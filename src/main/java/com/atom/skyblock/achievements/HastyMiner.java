@@ -6,8 +6,10 @@ import com.atom.skyblock.data.DataManager;
 import dev.atom.atomachievements.achievement.i.Achievement;
 import dev.atom.atomachievements.api.AchievementAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -33,6 +35,11 @@ public class HastyMiner extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.RARE;
+    }
+
+    @Override
     public JavaPlugin source() {
         return SBMain.INSTANCE;
     }
@@ -50,6 +57,7 @@ public class HastyMiner extends Achievement {
     @Override
     public void onComplete(Player player) {
         SBMain.totalGlobalCobblestoneBroken+= 120;
+        SBMain.globalCobblestoneLocation.getWorld().dropItemNaturally(SBMain.globalCobblestoneLocation, new ItemStack(Material.DIAMOND_PICKAXE, 1));
         this.conclude(player);
     }
 

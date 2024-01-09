@@ -18,7 +18,7 @@ public class Pickuper1 extends Achievement {
 
     @Override
     public String description() {
-        return "Ganha-se quando o player pega 30.000 items do chão.";
+        return "Ganha-se quando o player pega 17.000 items do chão.";
     }
 
     @Override
@@ -34,6 +34,11 @@ public class Pickuper1 extends Achievement {
     @Override
     public Material itemDisplay() {
         return Material.COBBLESTONE;
+    }
+
+    @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.VERY_RARE;
     }
 
     @Override
@@ -60,7 +65,7 @@ public class Pickuper1 extends Achievement {
     @EventHandler
     public void onPick(final PlayerPickupItemEvent ev) {
         if (!AchievementAPI.hasCompleted(ev.getPlayer(), this)) {
-            AchievementAPI.getAchievementInfo(this, ev.getPlayer()).progress+= (double) ev.getItem().getItemStack().getAmount() / 30000;
+            AchievementAPI.getAchievementInfo(this, ev.getPlayer()).progress+= (double) ev.getItem().getItemStack().getAmount() / 17000;
             if (AchievementAPI.getAchievementInfo(this, ev.getPlayer()).progress >= 1) {
                 onComplete(ev.getPlayer());
             }

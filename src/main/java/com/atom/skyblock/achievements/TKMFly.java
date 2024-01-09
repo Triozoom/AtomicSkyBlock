@@ -27,6 +27,11 @@ public class TKMFly extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public String id() {
         return "asb_a_new_4";
     }

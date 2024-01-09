@@ -14,8 +14,20 @@ implements Listener {
 
     private final String PATCH_NOTES =
             String.format("\n §9[AtomicSkyBlock] §6Patch Notes for v%s available: \n", SBMain.getPlugin(SBMain.class).getDescription().getVersion()) +
-            " §8- §fAdded POWER UPS;\n" +
-            " §8- §f(don't remember)";
+            " §8- §aFIRST STABLE VERSION!\n" +
+            " §8- §fAdded Farming System;\n" +
+            " §8- §fAdded 5 Farms;\n" +
+            " §8- §fAdded possibility of farm drops;\n" +
+            " §8- §fAdded complete support for AtomAchievements;\n" +
+            " §8- §fAdded 52 Achievements;\n" +
+            " §8- §fMostly translated everything to Portuguese;\n" +
+            " §8- §fImproved performance (unlikely to decrease TPS unless server starts dying);\n" +
+            " §8- §fAdded Chatting System;\n" +
+            " §8- §fAdded announcements;\n" +
+            " §8- §fBugfixes and enhancements;\n" +
+            " §8- §fQoL changes;\n" +
+            " §8- §fMade drops more likely to happen;\n" +
+            " §8- §fAnd more I don't remember!";
 
     @EventHandler
     public void onJoin(final PlayerJoinEvent e) {

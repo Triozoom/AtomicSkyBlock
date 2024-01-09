@@ -35,6 +35,11 @@ public class Milestone3 extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.VERY_RARE;
+    }
+
+    @Override
     public JavaPlugin source() {
         return SBMain.INSTANCE;
     }

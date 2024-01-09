@@ -12,6 +12,7 @@ import com.atom.skyblock.ultilidadesfodas.AtomAchievementsHook;
 import com.atom.skyblock.ultilidadesfodas.Database;
 import com.atom.skyblock.events.pu.InteractingEvent;
 import com.atom.skyblock.ultilidadesfodas.IndividualDatabase;
+import dev.atom.atomachievements.AtomAchievements;
 import dev.joel.bukkitutil.BukkitUtil;
 import dev.joel.bukkitutil.sql.SQLFile;
 import dev.joel.bukkitutil.sql.enums.UpdateType;
@@ -24,6 +25,7 @@ import org.bukkit.block.*;
 import org.bukkit.*;
 import org.bukkit.scheduler.*;
 
+import java.io.File;
 import java.util.Collection;
 
 public final class SBMain extends JavaPlugin
@@ -36,12 +38,15 @@ public final class SBMain extends JavaPlugin
     public IndividualDatabase idb;
 
     public static boolean aAc = false;
+    public boolean a = true;
 
     public static SBMain INSTANCE; // this dumbass didn't do this LMFAO
 
     @Override
     public void onLoad() {
         if (!BukkitUtil.isCreated()) BukkitUtil.create();
+        if (this.getConfig() == null) AtomAchievements.canStart = false;
+        if (!new File(getDataFolder(), "config.yml").exists()) AtomAchievements.canStart = false;
     }
 
     @SneakyThrows
@@ -58,6 +63,7 @@ public final class SBMain extends JavaPlugin
         this.getCommand("asb").setExecutor(new cmd());
         if (this.getConfig().getString("globalCobblestone") == null || this.getConfig().getString("globalCobblestone").equalsIgnoreCase("unset")) {
             Bukkit.getConsoleSender().sendMessage("§4§lA cobblestone global não foi setada. Por favor use /asb set enquanto olha para um bloco para setar-lo como a cobblestone.");
+            a = false;
             return;
         }
         final String bSplit = this.getConfig().getString("globalCobblestone");
@@ -124,6 +130,7 @@ public final class SBMain extends JavaPlugin
     }
     
     public void onDisable() {
+        if (!a) return;
         Database.updateBlocks(SBMain.totalGlobalCobblestoneBroken);
         Database.updatePhase(SBMain.phase);
 

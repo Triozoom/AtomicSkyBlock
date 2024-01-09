@@ -58,13 +58,14 @@ public class PAPI extends PlaceholderExpansion {
                 case 6:
                     return "Você já terminou o jogo!";
             }
-        }else if (params.equalsIgnoreCase("blocks_broken") && player != null && player.isOnline()) {
+        }else if (params.equalsIgnoreCase("blocks_broken") && player != null && DataManager.get((Player) player) != null && player.isOnline()) {
             return "" + DataManager.get((Player) player).blocksBroken;
-        }else if (params.equalsIgnoreCase("farm_count") && player != null && player.isOnline()) {
+        }else if (params.equalsIgnoreCase("farm_count") && player != null && DataManager.get((Player) player) != null && player.isOnline()) {
+            if (DataManager.get((Player) player).ownedFarms == null) return "loading...";
             return "" + DataManager.get((Player) player).ownedFarms.size();
         }else if (params.equalsIgnoreCase("total_farm_count")) {
             return "" + FarmManager.allFarms.size();
         }
-        return null;
+        return "loading...";
     }
 }

@@ -40,6 +40,10 @@ public class SpiderKiller extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.RARE;
+    }
+    @Override
     public boolean showTitle() {
         return true;
     }

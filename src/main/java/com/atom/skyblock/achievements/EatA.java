@@ -32,6 +32,11 @@ public class EatA extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public JavaPlugin source() {
         return SBMain.INSTANCE;
     }

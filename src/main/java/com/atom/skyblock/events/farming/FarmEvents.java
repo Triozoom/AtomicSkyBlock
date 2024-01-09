@@ -219,7 +219,7 @@ public class FarmEvents implements Listener {
                 boolean netherite = false, skel_head = false, diamonde = false;
                 for (final Entity ient : entities) {
                     final Item item = (Item) ient;
-                    if (item.getItemStack().getType() == Material.NETHERITE_INGOT && item.getItemStack().getAmount() >= 15)
+                    if (item.getItemStack().getType() == Material.NETHERITE_INGOT && item.getItemStack().getAmount() >= 10)
                         netherite = true;
                     if (item.getItemStack().getType() == Material.DIAMOND && item.getItemStack().getAmount() >= 24)
                         diamonde = true;
@@ -235,7 +235,7 @@ public class FarmEvents implements Listener {
                         nblock = true;
                     if (item.getItemStack().getType() == Material.DIAMOND_BLOCK && item.getItemStack().getAmount() >= 10)
                         dblock = true;
-                    if (item.getItemStack().getType() == Material.DRAGON_HEAD && item.getItemStack().getAmount() >= 5)
+                    if (item.getItemStack().getType() == Material.DRAGON_HEAD && item.getItemStack().getAmount() >= 2)
                         dragon_head = true;
                 }
                 return nblock && dblock && dragon_head;

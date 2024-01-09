@@ -37,6 +37,11 @@ public class CraftFarmAch extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.UNCOMMON;
+    }
+
+    @Override
     public boolean showTitle() {
         return true;
     }

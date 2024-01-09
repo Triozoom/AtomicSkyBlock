@@ -50,6 +50,11 @@ public class FlyingHigh extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.VERY_RARE;
+    }
+
+    @Override
     public Material itemDisplay() {
         return Material.ENDER_CHEST;
     }

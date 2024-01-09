@@ -1,5 +1,5 @@
 name: AtomicSkyBlock
-version: 0.7Dev
+version: 1.0
 main: com.atom.skyblock.SBMain
 api-version: 1.18
 depend: [TitleManager]

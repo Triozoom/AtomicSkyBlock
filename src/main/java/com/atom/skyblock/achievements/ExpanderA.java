@@ -44,6 +44,11 @@ public class ExpanderA extends Achievement {
     }
 
     @Override
+    public AchievementRarity rarity() {
+        return AchievementRarity.RARE;
+    }
+
+    @Override
     public Material itemDisplay() {
         return Material.GRASS_BLOCK;
     }
